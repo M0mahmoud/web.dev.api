@@ -1,0 +1,6 @@
+anyio
+Flask
+requests
+beautifulsoup4
+python-telegram-bot
+python-dotenv
