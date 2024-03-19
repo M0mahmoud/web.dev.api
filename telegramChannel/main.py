@@ -56,7 +56,7 @@ async def send_message(bot, chat_id, text, blog_data):
         paragraph = blog_data['paragraph']
         link = blog_data['link']
         image_url = blog_data['image_url']
-        html_message = f'<b><a href="{link}">{title}</a></b>\n<b>{text}</b>\n\n{paragraph}'
+        html_message = f'<b><a href="{link}">{title}</a></b>\n\n{paragraph}\n{text}'
 
         await bot.send_photo(chat_id, photo=image_url,
                              caption=html_message, parse_mode='HTML')
@@ -77,14 +77,14 @@ async def main():
                 key = item.get('time_as_key')
                 if key and key not in last_data:
                     last_data.add(key)
-                    await send_message(bot, chat_id,  "New blog", item)
+                    await send_message(bot, chat_id,  "#blog", item)
 
         if articles_data:
             for item in articles_data:
                 key = item.get('time_as_key')
                 if key and key not in last_data:
                     last_data.add(key)
-                    await send_message(bot, chat_id,  "New Article", item)
+                    await send_message(bot, chat_id,  "#article", item)
 
         save_data(last_data)
         print('--------------new check--------------')
