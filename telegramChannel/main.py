@@ -40,14 +40,14 @@ def get_api_data(endpoint):
 def load_data():
     try:
         with open(DATA_FILE, 'rb') as f:
-            return pickle.load(f)
+            return set(pickle.load(f))
     except FileNotFoundError:
         return set()
 
 
 def save_data(data):
     with open(DATA_FILE, 'wb') as f:
-        pickle.dump(data, f)
+        pickle.dump(list(data), f)
 
 
 async def send_message(bot, chat_id, text, blog_data):
